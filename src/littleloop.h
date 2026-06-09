@@ -22,14 +22,6 @@ extern "C" {
 // то не перезаписываем конфигурацию. В ином случае пытаемся
 // определить что было импортировано и исспользуем методы оттуда.
 
-    #ifdef __CH32FUN_H // авто конфигурация для CH32FUN
-        #include <ch32fun.h>
-
-        #define LOOP_SYSTICK_FUNC SysTick->CNT
-        #define LOOP_SYSTICK_MS_DELIMETER DELAY_MS_TIME
-        #define LOOP_ENABLE_AUTO_SCHEDULER
-    #endif
-
     #ifdef ARDUINO // авто конфигурация для arduino (wiring)
         #include <Arduino.h>
 

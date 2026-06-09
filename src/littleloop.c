@@ -86,8 +86,6 @@ void lloop_start_auto_scheduler() {
 
 #else
 
-void lloop_start_auto_scheduler() __attribute__((error("To use auto-scheduler define LOOP_ENABLE_AUTO_SCHEDULER in loopconfig.h!")));
-void lloop_start_auto_scheduler() {};
 #pragma message("LOOP_ENABLE_AUTO_SCHEDULER not defined!")
 
 #endif // LOOP_ENABLE_AUTO_SCHEDULER
