@@ -1,5 +1,5 @@
 {
-  "name": "LittleLOOP",
+  "name": "littleloop",
   "description": "Minimal RTOS-like task runner",
   "keywords": "littleloop",
   "authors": {
@@ -12,5 +12,6 @@
   },
   "version": "0.0.1",
   "license": "BSD-3-Clause",
-  "frameworks": "arduino, ch32fun"
+  "frameworks": "*",
+  "platforms": "*"
 }
