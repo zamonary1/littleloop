@@ -2,7 +2,8 @@
 #include "littleloop.h"
 #include "littleloop_types.h"
 
-static task_instance_t task_queue[TASK_QUEUE_SIZE] = {0}; 
+static task_instance_t task_queue[TASK_QUEUE_SIZE] = {0};
+static uint64_t _ticks_stepped = 0;
 
 /* Добавляет новую задачу, возвращает индекс этой задачи
 */
@@ -29,8 +30,9 @@ int32_t lloop_add_task(void (*task_function_ptr)( void ), uint32_t call_interval
     task_queue[available_task_slot].state = DEFAULT_TASK_STATE;
 
     return available_task_slot;
-    
+
 }
+
 
 void lloop_enable_task(uint32_t task_idx) {
     if (task_idx >= TASK_QUEUE_SIZE) {
@@ -49,6 +51,7 @@ void lloop_disable_task(uint32_t task_idx) {
 }
 
 void lloop_step_tick() {
+    _ticks_stepped++;
     for (uint32_t t = 0; t<TASK_QUEUE_SIZE; t++) {
         switch (task_queue[t].state) {
             case empty:
@@ -64,9 +67,13 @@ void lloop_step_tick() {
                     // вызываем метод
                     task_queue[t].task_function_ptr();
                 }
-                
+
         }
     }
+}
+
+uint64_t lloop_get_ticks() {
+    return _ticks_stepped;
 }
 
 #ifdef LOOP_ENABLE_AUTO_SCHEDULER

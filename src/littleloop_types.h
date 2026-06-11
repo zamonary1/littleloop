@@ -14,4 +14,3 @@ struct {
     task_state state;
 
 } typedef task_instance_t;
-

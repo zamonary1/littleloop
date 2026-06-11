@@ -12,7 +12,7 @@ extern "C" {
 
 #if __has_include("loopconfig.h")
     #include "loopconfig.h"
-#else 
+#else
     #pragma message("loopconfig.h has not been found! \nImporting provided loopconfig_default.h")
     #include "loopconfig_default.h"
 #endif
@@ -43,13 +43,14 @@ extern "C" {
         // оптимизация для arduino
         #define LOOP_MILLIS_TIMER_GET millis()
     #endif
-    
+
 #endif
 
 int32_t lloop_add_task(void (*task_function_ptr)( void ), uint32_t call_interval_ticks);
 void lloop_enable_task(uint32_t task_idx);
 void lloop_disable_task(uint32_t task_idx);
 void lloop_step_tick();
+uint64_t lloop_get_ticks();
 void lloop_start_auto_scheduler();
 
 #ifdef __cplusplus
